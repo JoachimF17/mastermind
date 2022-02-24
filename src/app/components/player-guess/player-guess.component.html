@@ -1,18 +1,18 @@
 <div>
     <tr>
-        <td style="background-color: red" (click)="onColorClick('red')"></td>
-        <td style="background-color: orange" (click)="onColorClick('orange')"></td>
-        <td style="background-color: yellow" (click)="onColorClick('yellow')"></td>
+        <td [style]="{'background-color': colors[0]}" (click)="onColorClick(colors[0])"></td>
+        <td [style]="{'background-color': colors[1]}" (click)="onColorClick(colors[1])"></td>
+        <td [style]="{'background-color': colors[2]}" (click)="onColorClick(colors[2])"></td>
     </tr>
     <tr>
-        <td style="background-color: green; color: white" (click)="onColorClick('green')"></td>
-        <td style="background-color: blue; color: white" (click)="onColorClick('blue')"></td>
-        <td style="background-color: indigo; color: white" (click)="onColorClick('indigo')"></td>
+        <td [style]="{'background-color': colors[3]}" (click)="onColorClick(colors[3])"></td>
+        <td [style]="{'background-color': colors[4]}" (click)="onColorClick(colors[4])"></td>
+        <td [style]="{'background-color': colors[5]}" (click)="onColorClick(colors[5])"></td>
     </tr>
     <tr>
-        <td (click)="onResetClick()">Reset</td>
-        <td style="background-color: violet" (click)="onColorClick('violet')"></td>
-        <td (click)="onValidateClick()">Validate</td>
+        <td style="background-color: seashell;" (click)="onResetClick()">Reset</td>
+        <td [style]="{'background-color': colors[6]}" (click)="onColorClick(colors[6])"></td>
+        <td style="background-color: mintcream;" (click)="onValidateClick()">Validate</td>
     </tr>
 </div>
 <div>

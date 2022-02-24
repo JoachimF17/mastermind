@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Colors } from 'src/app/enums/color.enum';
+import { Config } from 'src/app/models/config.model';
 import { Guess } from 'src/app/models/guess.model';
 
 @Component({
@@ -17,10 +19,13 @@ export class JeuComponent implements OnInit {
     ]
   };
 
+  @Input('getConfig')
+  config!: Config;
+
+  colors = Colors;
+
   guesses: Guess[] = [];
-  nbCouleurs: number = 0;
   nbTentatives: number = 0;
-  goodGuess: number = 0;
   win: boolean = false;
   lose: boolean = false;
 
@@ -30,13 +35,20 @@ export class JeuComponent implements OnInit {
   }
 
   getGuess(guess: Guess){
-    this.nbTentatives++;
+    if(this.nbTentatives === 0 && this.config.solo){
+      for(let i = 0; i < 4; i++){
+        this.randomColor(i);
+      }
+    }
+
     this.guessCheck(guess);
     this.guesses?.push(guess);
 
-    if(this.nbTentatives === 10){
+    if(this.nbTentatives === this.config.nbTentatives){
       this.lose = true;
     }
+
+    this.nbTentatives++;
   }
 
   guessCheck(guess: Guess){
@@ -54,6 +66,14 @@ export class JeuComponent implements OnInit {
           guess.pions[i].toWhite = true;
         }
       }
+    }
+
+    for(let i = 0; i < 4; i++){
+      for(let j = 0; j < 4; j++){
+        if(guess.pions[i].color == guess.pions[j].color && i != j && (guess.pions[j].toBlack || guess.pions[j].toWhite)){
+          guess.pions[i].toWhite = false;
+        }
+      }
 
       if(guess.pions[i].toBlack){
         guess.black++;
@@ -62,16 +82,14 @@ export class JeuComponent implements OnInit {
       }
     }
 
-    for(let i = 0; i < 4; i++){
-      for(let j = 0; j < 4; j++){
-        if(guess.pions[i].color == guess.pions[j].color && guess.pions[j].toBlack){
-          guess.pions[i].toWhite = false;
-        }
-      }
-    }
-
     if(guess.black == 4){
       this.win = true;
     }
+  }
+
+  randomColor(i: number){
+    let rdm = Math.floor(Math.random() * 7);
+
+    this.combination.pions[i].color = this.colors[rdm];
   }
 }

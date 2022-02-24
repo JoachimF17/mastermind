@@ -1,0 +1,11 @@
+<div *ngIf="!start;else container">
+    <input type="radio" name="solo" [value]="true" [(ngModel)]="config.solo">Solo <br>
+    <input type="radio" name="solo" [value]="false" [(ngModel)]="config.solo">Multi <br>
+    Nombre de tentatives : <input type="number" name="Tentatives" [(ngModel)]="config.nbTentatives"> <br>
+    Nombre de couleurs : <input type="number" name="Couleurs" [(ngModel)]="config.nbCouleurs"> <br>
+    <button (click)="toggleStart()">Start</button>
+</div>
+
+<ng-template #container>
+    <app-jeu [getConfig]="config"></app-jeu>
+</ng-template>

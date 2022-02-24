@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Colors } from 'src/app/enums/color.enum';
 import { Guess } from 'src/app/models/guess.model';
 
 @Component({
@@ -16,6 +17,8 @@ export class PlayerGuessComponent implements OnInit {
       {color: ""},
     ]
   };
+
+  colors = Colors;
 
   picks: number = 0;
 
@@ -66,9 +69,8 @@ export class PlayerGuessComponent implements OnInit {
               ]
       };
       this.emitter.emit(envoi);
+      this.onResetClick();
     }
-    
-    this.onResetClick();
   }
 
   onGuessClick(color: number){

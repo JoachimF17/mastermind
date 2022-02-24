@@ -6,6 +6,13 @@
         <app-board [getGuesses]="guesses"></app-board>
     </div>
 </div>
-<div *ngIf="win">
-    <p style="color: green">C'est gagné !</p>
+<div *ngIf="win || lose">
+    <p [style]="{'color': win ? 'green' : 'red'}">{{ win ? "C'est gagné !" : "C'est perdu !"}}</p>
+    <p>La combinaison gagnante : </p>
+    <tr>
+        <td [style]="{'background-color': combination.pions[0].color}"></td>
+        <td [style]="{'background-color': combination.pions[1].color}"></td>
+        <td [style]="{'background-color': combination.pions[2].color}"></td>
+        <td [style]="{'background-color': combination.pions[3].color}"></td>
+    </tr>
 </div>

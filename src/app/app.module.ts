@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { JeuComponent } from './components/jeu/jeu.component';
 import { PlayerGuessComponent } from './components/player-guess/player-guess.component';
 import { BoardComponent } from './components/board/board.component';
+import { OptionsComponent } from './components/options/options.component';
+import { PickCombinationComponent } from './components/pick-combination/pick-combination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     JeuComponent,
     PlayerGuessComponent,
-    BoardComponent
+    BoardComponent,
+    OptionsComponent,
+    PickCombinationComponent
   ],
   imports: [
     BrowserModule,
