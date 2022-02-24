@@ -1,0 +1,10 @@
+<div *ngFor="let g of guesses">
+    <tr>
+        <td class="white">{{g.white}}</td>
+        <td [style]="{'background-color': g.pions[0].color}"></td>
+        <td [style]="{'background-color': g.pions[1].color}"></td>
+        <td [style]="{'background-color': g.pions[2].color}"></td>
+        <td [style]="{'background-color': g.pions[3].color}"></td>
+        <td class="black">{{g.black}}</td>
+    </tr>
+</div>

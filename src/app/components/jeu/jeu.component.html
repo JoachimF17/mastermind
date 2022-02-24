@@ -1,30 +1,11 @@
-<div>
-    <tr>
-        <td style="background-color: red" (click)="onColorClick('red')"></td>
-        <td style="background-color: orange" (click)="onColorClick('orange')"></td>
-        <td style="background-color: yellow" (click)="onColorClick('yellow')"></td>
-    </tr>
-    <tr>
-        <td style="background-color: green; color: white" (click)="onColorClick('green')"></td>
-        <td style="background-color: blue; color: white" (click)="onColorClick('blue')"></td>
-        <td style="background-color: indigo; color: white" (click)="onColorClick('indigo')"></td>
-    </tr>
-    <tr>
-        <td (click)="onResetClick()">Reset</td>
-        <td style="background-color: violet" (click)="onColorClick('violet')"></td>
-        <td (click)="onValidateClick()">Validate</td>
-    </tr>
-</div>
-<div>
-    <div >
-        <tr *ngFor="let g of guesses; let i = index">
-            <td *ngFor="let gg of g; let j = index" [style]="{'background-color': guessesBg[i][j]}">
-                <span [style]="{'color': gg}">{{gg}}</span>
-            </td>
-        </tr>
+<div class="container">
+    <div>
+        <app-player-guess [termine]="win || lose" (guessEmitter)="getGuess($event)"></app-player-guess>
+    </div>
+    <div>
+        <app-board [getGuesses]="guesses"></app-board>
     </div>
 </div>
-
 <div *ngIf="win">
     <p style="color: green">C'est gagné !</p>
 </div>

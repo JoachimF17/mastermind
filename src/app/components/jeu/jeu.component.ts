@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Guess } from 'src/app/models/guess.model';
 
 @Component({
   selector: 'app-jeu',
@@ -7,78 +8,70 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JeuComponent implements OnInit {
 
-  combination: string[] = ["blue", "green", "yellow", "red"];
-  guesses: string[][] = [
-    ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""],
-    ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]
-  ];
-  guessesBg: string[][] = [
-    ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""],
-    ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""], ["", "", "", ""]
-  ];
+  combination: Guess = {
+    pions: [
+      {color: "red"},
+      {color: "orange"},
+      {color: "yellow"},
+      {color: "blue"},
+    ]
+  };
+
+  guesses: Guess[] = [];
   nbCouleurs: number = 0;
   nbTentatives: number = 0;
   goodGuess: number = 0;
   win: boolean = false;
-  toGreen: boolean = false;
-  toYellow: boolean = false;
+  lose: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onColorClick(color: string){
-    this.guesses[this.nbTentatives][this.nbCouleurs] = color;
+  getGuess(guess: Guess){
+    this.nbTentatives++;
+    this.guessCheck(guess);
+    this.guesses?.push(guess);
 
-    if(this.nbCouleurs < 4)
-      this.nbCouleurs++;
-
-    console.log(this.nbCouleurs);
+    if(this.nbTentatives === 10){
+      this.lose = true;
+    }
   }
 
-  onResetClick(){
-    this.guesses[this.nbTentatives] = ["", "", "", ""];
-    this.nbCouleurs = 0;
-  }
+  guessCheck(guess: Guess){
+    guess.black = 0;
+    guess.white = 0;
 
-  onValidateClick(){
-    if(this.nbCouleurs === 4){
-      for(let i = 0; i < 4; i++){
-        for(let j = 0; j < 4; j++){
-          if(this.combination[j] === this.guesses[this.nbTentatives][i]){
-            if(i === j)
-              this.toGreen = true;
-            else
-              this.toYellow = true;
-          }
-        }
+    for(let i = 0; i < 4; i++){
 
-        if(this.toGreen)
-          this.guessesBg[this.nbTentatives][i] = 'palegreen';
-        else if(this.toYellow)
-          this.guessesBg[this.nbTentatives][i] = 'palegoldenrod';
-        else
-          this.guessesBg[this.nbTentatives][i] = 'palevioletred';
-
-        this.toGreen = false;
-        this.toYellow = false;
+      if(guess.pions[i].color == this.combination.pions[i].color){
+        guess.pions[i].toBlack = true;
       }
 
-      for(let i = 0; i < 4; i++)
-      {
-        if(this.combination[i] === this.guesses[this.nbTentatives][i]){
-          this.goodGuess++;
+      for(let j = 0; j < 4; j++){
+        if(guess.pions[i].color == this.combination.pions[j].color && !guess.pions[i].toBlack){
+          guess.pions[i].toWhite = true;
         }
       }
 
-      if(this.goodGuess === 4)
-        this.win = true;
-      else
-        this.goodGuess = 0;
+      if(guess.pions[i].toBlack){
+        guess.black++;
+      }else if(guess.pions[i].toWhite){
+        guess.white++;
+      }
+    }
 
-      this.nbCouleurs = 0;
-      this.nbTentatives++;
+    for(let i = 0; i < 4; i++){
+      for(let j = 0; j < 4; j++){
+        if(guess.pions[i].color == guess.pions[j].color && guess.pions[j].toBlack){
+          guess.pions[i].toWhite = false;
+        }
+      }
+    }
+
+    if(guess.black == 4){
+      this.win = true;
     }
   }
 }

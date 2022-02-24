@@ -1,0 +1,26 @@
+<div>
+    <tr>
+        <td style="background-color: red" (click)="onColorClick('red')"></td>
+        <td style="background-color: orange" (click)="onColorClick('orange')"></td>
+        <td style="background-color: yellow" (click)="onColorClick('yellow')"></td>
+    </tr>
+    <tr>
+        <td style="background-color: green; color: white" (click)="onColorClick('green')"></td>
+        <td style="background-color: blue; color: white" (click)="onColorClick('blue')"></td>
+        <td style="background-color: indigo; color: white" (click)="onColorClick('indigo')"></td>
+    </tr>
+    <tr>
+        <td (click)="onResetClick()">Reset</td>
+        <td style="background-color: violet" (click)="onColorClick('violet')"></td>
+        <td (click)="onValidateClick()">Validate</td>
+    </tr>
+</div>
+<div>
+    <p>Guess : </p>
+    <tr>
+        <td [style]="{'background-color': guess.pions[0].color}" (click)="onGuessClick(1)"></td>
+        <td [style]="{'background-color': guess.pions[1].color}" (click)="onGuessClick(2)"></td>
+        <td [style]="{'background-color': guess.pions[2].color}" (click)="onGuessClick(3)"></td>
+        <td [style]="{'background-color': guess.pions[3].color}" (click)="onGuessClick(4)"></td>
+    </tr>
+</div>
