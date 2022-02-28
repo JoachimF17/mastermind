@@ -16,7 +16,8 @@
     </tr>
 </div>
 <div>
-    <p>Guess : </p>
+    <p>Tentatives max = {{config.nbTentatives}}</p>
+    <p>{{config.solo ? 'Guess' : 'Pick the combination'}} :</p>
     <tr>
         <td [style]="{'background-color': guess.pions[0].color}" (click)="onGuessClick(1)"></td>
         <td [style]="{'background-color': guess.pions[1].color}" (click)="onGuessClick(2)"></td>

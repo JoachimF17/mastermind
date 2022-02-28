@@ -1,8 +1,8 @@
 <div class="container">
-    <div>
-        <app-player-guess [termine]="win || lose" (guessEmitter)="getGuess($event)"></app-player-guess>
+    <div class="guess">
+        <app-player-guess [termine]="win || lose" [config]="config" (guessEmitter)="getGuess($event)"></app-player-guess>
     </div>
-    <div>
+    <div class="board">
         <app-board [getGuesses]="guesses"></app-board>
     </div>
 </div>

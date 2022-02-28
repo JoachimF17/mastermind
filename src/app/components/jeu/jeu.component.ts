@@ -32,23 +32,24 @@ export class JeuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    for(let i = 0; i < 4; i++){
+      this.randomColor(i);
+    }
   }
 
   getGuess(guess: Guess){
-    if(this.nbTentatives === 0 && this.config.solo){
-      for(let i = 0; i < 4; i++){
-        this.randomColor(i);
+    if(!this.config.solo){
+      this.combination = guess;
+      this.config.solo = true;
+    }else{
+      this.guessCheck(guess);
+      guess.essai = ++this.nbTentatives;
+      this.guesses?.push(guess);
+  
+      if(this.nbTentatives === this.config.nbTentatives){
+        this.lose = true;
       }
     }
-
-    this.guessCheck(guess);
-    this.guesses?.push(guess);
-
-    if(this.nbTentatives === this.config.nbTentatives){
-      this.lose = true;
-    }
-
-    this.nbTentatives++;
   }
 
   guessCheck(guess: Guess){

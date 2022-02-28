@@ -4,7 +4,14 @@
 
 .container > div{
     margin: 0 15px;
-    width: 30%;
+}
+
+.guess{
+    width: 25%;
+}
+
+.board{
+    width: auto;
 }
 
 td{

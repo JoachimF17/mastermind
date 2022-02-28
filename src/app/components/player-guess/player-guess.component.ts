@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Colors } from 'src/app/enums/color.enum';
+import { Config } from 'src/app/models/config.model';
 import { Guess } from 'src/app/models/guess.model';
 
 @Component({
@@ -24,6 +25,9 @@ export class PlayerGuessComponent implements OnInit {
 
   @Input('termine')
   termine: boolean = false;
+
+  @Input('config')
+  config!: Config;
 
   @Output('guessEmitter')
   emitter = new EventEmitter<Guess>();
