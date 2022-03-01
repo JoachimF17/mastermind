@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Config } from 'src/app/models/config.model';
 import { Guess } from 'src/app/models/guess.model';
+import { Pion } from 'src/app/models/pion.model';
 
 @Component({
   selector: 'app-player-guess',
@@ -74,24 +75,10 @@ export class PlayerGuessComponent implements OnInit {
     }
   }
 
-  onGuessClick(color: number){
-    switch(color){
-      case 1:
-        this.guess.pions[0].color = "";
-        this.picks--;
-        break;
-      case 2:
-        this.guess.pions[1].color = "";
-        this.picks--;
-        break;
-      case 3:
-        this.guess.pions[2].color = "";
-        this.picks--;
-        break;
-      case 4:
-        this.guess.pions[3].color = "";
-        this.picks--;
-        break;
+  onGuessClick(pion: Pion){
+    if(pion.color.length > 0){
+      pion.color = "";
+      this.picks--;
     }
   }
 

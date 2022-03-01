@@ -40,8 +40,9 @@ export class JeuComponent implements OnInit {
       this.combination = guess;
       this.config.solo = true;
     }else{
+      this.nbTentatives++;
       this.guessCheck(guess);
-      this.guesses?.push(guess);
+      this.guesses.push(guess);
   
       if(this.nbTentatives === this.config.nbTentatives){
         this.lose = true;

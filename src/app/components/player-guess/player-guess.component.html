@@ -1,7 +1,5 @@
-<div class="tab">
-    <tr>
-        <td *ngFor="let c of config.colorSet" [style]="{'background-color': c}" (click)="onColorClick(c)"></td>
-    </tr>
+<div>
+    <div *ngFor="let c of config.colorSet" [style]="{'background-color': c}" (click)="onColorClick(c)"></div>
     <tr>
         <td style="background-color: seashell;" (click)="onResetClick()">Reset</td>
         <td style="background-color: mintcream;" (click)="onValidateClick()">Validate</td>
@@ -11,9 +9,6 @@
     <p>Tentatives max = {{config.nbTentatives}}</p>
     <p>{{config.solo ? 'Guess' : 'Pick the combination'}} :</p>
     <tr>
-        <td [style]="{'background-color': guess.pions[0].color}" (click)="onGuessClick(1)"></td>
-        <td [style]="{'background-color': guess.pions[1].color}" (click)="onGuessClick(2)"></td>
-        <td [style]="{'background-color': guess.pions[2].color}" (click)="onGuessClick(3)"></td>
-        <td [style]="{'background-color': guess.pions[3].color}" (click)="onGuessClick(4)"></td>
+        <td *ngFor="let p of guess.pions" [style]="{'background-color': p.color}" (click)="onGuessClick(p)"></td>
     </tr>
 </div>

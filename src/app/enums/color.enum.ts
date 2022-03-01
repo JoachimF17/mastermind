@@ -1,11 +1,11 @@
 export enum Colors{
     'lightcoral',
     'hotpink',
-    'coral',
+    'lightskyblue',
     'palegoldenrod',
     'slateblue',
     'mediumseagreen',
-    'cornflowerblue',
+    'royalblue',
     'firebrick',
     'mediumvioletred',
     'tomato',

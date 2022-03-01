@@ -10,9 +10,6 @@
     <p [style]="{'color': win ? 'green' : 'red'}">{{ win ? "C'est gagné !" : "C'est perdu !"}}</p>
     <p>La combinaison gagnante : </p>
     <tr>
-        <td [style]="{'background-color': combination.pions[0].color}"></td>
-        <td [style]="{'background-color': combination.pions[1].color}"></td>
-        <td [style]="{'background-color': combination.pions[2].color}"></td>
-        <td [style]="{'background-color': combination.pions[3].color}"></td>
+        <td *ngFor="let p of combination.pions" [style]="{'background-color': p.color}"></td>
     </tr>
 </div>

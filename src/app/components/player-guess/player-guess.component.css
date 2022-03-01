@@ -7,8 +7,11 @@ td{
     text-align: center;
 }
 
-.tab{
-    max-width: 40%;
+div > div{
+    border: 1px solid black;
+    padding: 0 5px;
+    width: 60px;
+    height: 30px;
 }
 
 /* .clic{
