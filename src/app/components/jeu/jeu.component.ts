@@ -46,15 +46,13 @@ export class JeuComponent implements OnInit {
   }
 
   getGuess(guess: Guess){
+    if(!this.timer){
+      this.startTimer();
+    }
+
     if(!this.config.solo){
       this.combination = guess;
       this.config.solo = true;
-      this.temps = 1000;
-      this.timer = setInterval(() => {
-        if(this.temps > 5){
-          this.temps -= 5;
-        }
-      }, 1000);
     }else{
       this.nbTentatives++;
       this.guessCheck(guess);
@@ -112,6 +110,15 @@ export class JeuComponent implements OnInit {
 
   restart(){
     this.emitter.emit();
+  }
+
+  startTimer(){
+    this.temps = 1000;
+    this.timer = setInterval(() => {
+      if(this.temps > 5){
+        this.temps -= 5;
+      }
+    }, 1000);
   }
 
   setScore(){
