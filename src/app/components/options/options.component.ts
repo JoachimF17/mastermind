@@ -35,4 +35,13 @@ export class OptionsComponent implements OnInit {
     this.config.colorSet.splice(ind, 1);
   }
 
+  restartGame(){
+    this.toggleStart();
+    this.config = {
+      solo: true,
+      nbTentatives: 10,
+      colorSet: []
+    }
+  }
+
 }

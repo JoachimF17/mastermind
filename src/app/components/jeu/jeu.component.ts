@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Colors } from 'src/app/enums/color.enum';
 import { Config } from 'src/app/models/config.model';
 import { Guess } from 'src/app/models/guess.model';
@@ -21,6 +21,9 @@ export class JeuComponent implements OnInit {
 
   @Input('getConfig')
   config!: Config;
+
+  @Output('restartEmitter')
+  emitter = new EventEmitter();
 
   guesses: Guess[] = [];
   nbTentatives: number = 0;
@@ -90,5 +93,9 @@ export class JeuComponent implements OnInit {
     let rdm = Math.floor(Math.random() * this.config.colorSet.length);
 
     this.combination.pions[i].color = this.config.colorSet[rdm];
+  }
+
+  restart(){
+    this.emitter.emit();
   }
 }

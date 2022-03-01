@@ -2,15 +2,15 @@
     <input type="radio" name="solo" [value]="true" [(ngModel)]="config.solo">Solo <br>
     <input type="radio" name="solo" [value]="false" [(ngModel)]="config.solo">Multi <br>
     Nombre de tentatives : <input type="number" name="Tentatives" [(ngModel)]="config.nbTentatives"> <br>
+    <br>Choisissez vos couleurs (de 4 à 7) <br>
+    <app-color-picker (pickEmitter)="getPick($event)"></app-color-picker> <br>
     Liste des couleurs : <br>
     <tr>
         <td *ngFor="let c of config.colorSet; let i = index" [style]="{'background-color': c}" (click)="remove(i)"></td>
     </tr>
-    <br>Choisissez vos couleurs (de 4 à 7) <br>
-    <app-color-picker (pickEmitter)="getPick($event)"></app-color-picker>
     <br><button [disabled]="config.colorSet.length < 4" (click)="toggleStart()">Start</button>
 </div>
 
 <ng-template #container>
-    <app-jeu [getConfig]="config"></app-jeu>
+    <app-jeu [getConfig]="config" (restartEmitter)="restartGame()"></app-jeu>
 </ng-template>
