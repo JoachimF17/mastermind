@@ -12,6 +12,7 @@
     <tr>
         <td *ngFor="let p of combination.pions" [style]="{'background-color': p.color}"></td>
     </tr>
+    <p>Score = {{score.score}}</p><br>
     <button (click)="restart()">Restart</button>
 </div>
     

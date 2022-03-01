@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Colors } from 'src/app/enums/color.enum';
 import { Config } from 'src/app/models/config.model';
 import { Guess } from 'src/app/models/guess.model';
+import { Score } from 'src/app/models/score.model';
 
 @Component({
   selector: 'app-jeu',
@@ -25,10 +26,16 @@ export class JeuComponent implements OnInit {
   @Output('restartEmitter')
   emitter = new EventEmitter();
 
+  score: Score = {
+
+  };
+
   guesses: Guess[] = [];
   nbTentatives: number = 0;
   win: boolean = false;
   lose: boolean = false;
+  timer?: any;
+  temps: number = 1000;
 
   constructor() { }
 
@@ -42,12 +49,19 @@ export class JeuComponent implements OnInit {
     if(!this.config.solo){
       this.combination = guess;
       this.config.solo = true;
+      this.temps = 1000;
+      this.timer = setInterval(() => {
+        if(this.temps > 5){
+          this.temps -= 5;
+        }
+      }, 1000);
     }else{
       this.nbTentatives++;
       this.guessCheck(guess);
       this.guesses.push(guess);
   
       if(this.nbTentatives === this.config.nbTentatives){
+        this.setScore();
         this.lose = true;
       }
     }
@@ -85,6 +99,7 @@ export class JeuComponent implements OnInit {
     }
 
     if(guess.black == 4){
+      this.setScore();
       this.win = true;
     }
   }
@@ -97,5 +112,10 @@ export class JeuComponent implements OnInit {
 
   restart(){
     this.emitter.emit();
+  }
+
+  setScore(){
+    clearInterval(this.timer);
+    this.score.score = Math.floor(12 * this.temps * (this.config.nbTentatives - this.nbTentatives + 1) / (8 - this.config.colorSet.length));
   }
 }

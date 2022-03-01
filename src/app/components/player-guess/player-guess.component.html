@@ -1,9 +1,5 @@
 <div>
     <div *ngFor="let c of config.colorSet" [style]="{'background-color': c}" (click)="onColorClick(c)"></div>
-    <tr>
-        <td style="background-color: seashell;" (click)="onResetClick()">Reset</td>
-        <td style="background-color: mintcream;" (click)="onValidateClick()">Validate</td>
-    </tr>
 </div>
 <div>
     <p>Tentatives max = {{config.nbTentatives}}</p>
@@ -11,4 +7,6 @@
     <tr>
         <td *ngFor="let p of guess.pions" [style]="{'background-color': p.color}" (click)="onGuessClick(p)"></td>
     </tr>
+    <button style="background-color: seashell;" (click)="onResetClick()" [disabled]="picks === 0">Reset</button>
+    <button style="background-color: mintcream;" (click)="onValidateClick()" [disabled]="picks != 4">Validate</button>
 </div>

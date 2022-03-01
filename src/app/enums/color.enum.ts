@@ -1,19 +1,19 @@
 export enum Colors{
-    'lightcoral',
+    'peachpuff',
     'hotpink',
+    'mediumslateblue',
     'lightskyblue',
     'palegoldenrod',
-    'slateblue',
-    'mediumseagreen',
+    'aquamarine',
+    'teal',
     'royalblue',
     'firebrick',
     'mediumvioletred',
     'tomato',
     'darkkhaki',
-    'orchid',
     'darkslateblue',
     'mediumspringgreen',
-    'mediumaquamarine',
+    'lightseagreen',
     'lightsteelblue',
-    'sandybrown'
+    'darkslategray'
 }

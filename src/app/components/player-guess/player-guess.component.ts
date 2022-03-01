@@ -62,17 +62,15 @@ export class PlayerGuessComponent implements OnInit {
   }
 
   onValidateClick(){
-    if(this.picks === 4){
-      let envoi = {
-        pions: [{color: this.guess.pions[0].color},
-                {color: this.guess.pions[1].color},
-                {color: this.guess.pions[2].color},
-                {color: this.guess.pions[3].color}
-              ]
-      };
-      this.emitter.emit(envoi);
-      this.onResetClick();
-    }
+    let envoi = {
+      pions: [{color: this.guess.pions[0].color},
+              {color: this.guess.pions[1].color},
+              {color: this.guess.pions[2].color},
+              {color: this.guess.pions[3].color}
+            ]
+    };
+    this.emitter.emit(envoi);
+    this.onResetClick();
   }
 
   onGuessClick(pion: Pion){
