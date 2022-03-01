@@ -1,17 +1,9 @@
-<div>
+<div class="tab">
     <tr>
-        <td [style]="{'background-color': colors[0]}" (click)="onColorClick(colors[0])"></td>
-        <td [style]="{'background-color': colors[1]}" (click)="onColorClick(colors[1])"></td>
-        <td [style]="{'background-color': colors[2]}" (click)="onColorClick(colors[2])"></td>
-    </tr>
-    <tr>
-        <td [style]="{'background-color': colors[3]}" (click)="onColorClick(colors[3])"></td>
-        <td [style]="{'background-color': colors[4]}" (click)="onColorClick(colors[4])"></td>
-        <td [style]="{'background-color': colors[5]}" (click)="onColorClick(colors[5])"></td>
+        <td *ngFor="let c of config.colorSet" [style]="{'background-color': c}" (click)="onColorClick(c)"></td>
     </tr>
     <tr>
         <td style="background-color: seashell;" (click)="onResetClick()">Reset</td>
-        <td [style]="{'background-color': colors[6]}" (click)="onColorClick(colors[6])"></td>
         <td style="background-color: mintcream;" (click)="onValidateClick()">Validate</td>
     </tr>
 </div>

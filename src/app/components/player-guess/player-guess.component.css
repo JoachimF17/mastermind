@@ -7,6 +7,10 @@ td{
     text-align: center;
 }
 
+.tab{
+    max-width: 40%;
+}
+
 /* .clic{
     display: flex;
     align-content: center;

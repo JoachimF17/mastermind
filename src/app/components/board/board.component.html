@@ -1,6 +1,6 @@
-<div *ngFor="let g of guesses">
+<div *ngFor="let g of guesses; let i = index">
     <tr>
-        <td class="nbTentatives">{{g.essai}}</td>
+        <td class="nbTentatives">{{i+1}}</td>
         <td class="white">{{g.white}}</td>
         <td [style]="{'background-color': g.pions[0].color}"></td>
         <td [style]="{'background-color': g.pions[1].color}"></td>

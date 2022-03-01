@@ -5,5 +5,15 @@ export enum Colors{
     'palegoldenrod',
     'slateblue',
     'mediumseagreen',
-    'cornflowerblue'
+    'cornflowerblue',
+    'firebrick',
+    'mediumvioletred',
+    'tomato',
+    'darkkhaki',
+    'orchid',
+    'darkslateblue',
+    'mediumspringgreen',
+    'mediumaquamarine',
+    'lightsteelblue',
+    'sandybrown'
 }

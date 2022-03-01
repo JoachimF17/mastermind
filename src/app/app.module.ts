@@ -8,6 +8,7 @@ import { JeuComponent } from './components/jeu/jeu.component';
 import { PlayerGuessComponent } from './components/player-guess/player-guess.component';
 import { BoardComponent } from './components/board/board.component';
 import { OptionsComponent } from './components/options/options.component';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { OptionsComponent } from './components/options/options.component';
     JeuComponent,
     PlayerGuessComponent,
     BoardComponent,
-    OptionsComponent
+    OptionsComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,

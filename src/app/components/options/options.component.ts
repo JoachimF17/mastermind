@@ -11,7 +11,7 @@ export class OptionsComponent implements OnInit {
   config: Config = {
     solo: true,
     nbTentatives: 10,
-    nbCouleurs: 7
+    colorSet: []
   }
 
   start: boolean = false;
@@ -23,6 +23,16 @@ export class OptionsComponent implements OnInit {
 
   toggleStart(){
     this.start = !this.start;
+  }
+
+  getPick(pick: string){
+    if(this.config.colorSet.length < 7 && !this.config.colorSet.includes(pick)){
+      this.config.colorSet.push(pick);
+    }
+  }
+
+  remove(ind: number){
+    this.config.colorSet.splice(ind, 1);
   }
 
 }

@@ -22,8 +22,6 @@ export class JeuComponent implements OnInit {
   @Input('getConfig')
   config!: Config;
 
-  colors = Colors;
-
   guesses: Guess[] = [];
   nbTentatives: number = 0;
   win: boolean = false;
@@ -43,7 +41,6 @@ export class JeuComponent implements OnInit {
       this.config.solo = true;
     }else{
       this.guessCheck(guess);
-      guess.essai = ++this.nbTentatives;
       this.guesses?.push(guess);
   
       if(this.nbTentatives === this.config.nbTentatives){
@@ -89,8 +86,8 @@ export class JeuComponent implements OnInit {
   }
 
   randomColor(i: number){
-    let rdm = Math.floor(Math.random() * 7);
+    let rdm = Math.floor(Math.random() * this.config.colorSet.length);
 
-    this.combination.pions[i].color = this.colors[rdm];
+    this.combination.pions[i].color = this.config.colorSet[rdm];
   }
 }
