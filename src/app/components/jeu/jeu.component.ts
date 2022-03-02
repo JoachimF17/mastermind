@@ -27,7 +27,8 @@ export class JeuComponent implements OnInit {
   emitter = new EventEmitter();
 
   score: Score = {
-
+    nom: "",
+    score: 0
   };
 
   guesses: Guess[] = [];
@@ -97,8 +98,8 @@ export class JeuComponent implements OnInit {
     }
 
     if(guess.black == 4){
-      this.setScore();
       this.win = true;
+      this.setScore();
     }
   }
 
@@ -109,6 +110,8 @@ export class JeuComponent implements OnInit {
   }
 
   restart(){
+    this.win = false;
+    this.lose = false;
     this.emitter.emit();
   }
 
@@ -123,6 +126,7 @@ export class JeuComponent implements OnInit {
 
   setScore(){
     clearInterval(this.timer);
-    this.score.score = Math.floor(12 * this.temps * (this.config.nbTentatives - this.nbTentatives + 1) / (8 - this.config.colorSet.length));
+    if(this.win)
+      this.score.score = Math.floor(12 * this.temps * (this.config.nbTentatives - this.nbTentatives + 1) / (8 - this.config.colorSet.length));
   }
 }
